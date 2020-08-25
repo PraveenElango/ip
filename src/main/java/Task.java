@@ -21,4 +21,8 @@ public class Task {
         return this.description;
     }
 
+    public boolean isDone(){
+        return this.isDone;
+    }
+
 }
