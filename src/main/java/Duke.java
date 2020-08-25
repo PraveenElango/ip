@@ -13,7 +13,7 @@ public class Duke{
         int i =0;
         while(tasks[i]!= null){
             System.out.print((i+1)+".");
-            System.out.print(tasks[i].getStatusIcon() + " ");
+//            System.out.print(tasks[i].getStatusIcon() + " ");
             System.out.println(tasks[i].getDesc() + " ");
             i++;
         }
@@ -25,21 +25,24 @@ public class Duke{
         Scanner sc = new Scanner(System.in);
         String op = sc.nextLine();
         while(!op.equals("bye")){
-            if(!op.equals("list") && !op.startsWith("done")){
+            if(!op.equals("list")) {
                 System.out.println("added: " + op);
                 addTask(op);
-            }else if(op.startsWith("done")){
-                System.out.println("Nice! I've marked this task as done:");
-                String index_string = op.substring(5);
-                int index = Integer.parseInt(index_string);
-                tasks[index-1].markAsDone();
-                System.out.print(tasks[index-1].getStatusIcon() + " ");
-                System.out.println(tasks[index-1].getDesc() + " ");
-            }else{
+            }
+//            }else if(op.startsWith("done")){
+//                System.out.println("Nice! I've marked this task as done:");
+//                String index_string = op.substring(5);
+//                int index = Integer.parseInt(index_string);
+//                tasks[index-1].markAsDone();
+//                System.out.print(tasks[index-1].getStatusIcon() + " ");
+//                System.out.println(tasks[index-1].getDesc() + " ");
+//            }
+            else{
                 System.out.println("Here are the tasks in your list: ");
                 printTasksList();
             }
             op = sc.nextLine();
+
         }
         if(op.equals("bye")){
             System.out.println("Bye. Hope to see you again soon!");
