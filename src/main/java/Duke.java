@@ -59,55 +59,55 @@ public class Duke{
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         Scanner sc = new Scanner(System.in);
-        String op = sc.nextLine();
-        while (!op.equals("bye")) {
-            if (!op.equals("list") && !op.startsWith("done") && !op.startsWith("todo") && !op.startsWith("deadline") && !op.startsWith("event")) {
-                System.out.println("added: " + op);
-                addTask(op);
-            } else if (op.startsWith("done")) {
+        String input = sc.nextLine();
+        while (!input.equals("bye")) {
+            if (!input.equals("list") && !input.startsWith("done") && !input.startsWith("todo") && !input.startsWith("deadline") && !input.startsWith("event")) {
+                System.out.println("added: " + input);
+                addTask(input);
+            } else if (input.startsWith("done")) {
                 //if they input done without number
-                if (op.length() == 4) {
+                if (input.length() == 4) {
                     System.out.println("Please specify index of task!");
-                    op = sc.nextLine();
+                    input = sc.nextLine();
                 }
-                String index_string = op.substring(5);
+                String index_string = input.substring(5);
                 int index = Integer.parseInt(index_string);
                 if (tasks[index - 1] == null || index < 0 || index > 99) {
                     System.out.println("Out of bounds! Try again!");
-                    op = sc.nextLine();
+                    input = sc.nextLine();
                     continue;
                 }
                 if (tasks[index - 1].isDone()) {
                     System.out.println("Already done!");
-                    op = sc.nextLine();
+                    input = sc.nextLine();
                     continue;
                 }
                 System.out.println("Nice! I've marked this task as done:");
                 tasks[index - 1].markAsDone();
                 System.out.print(tasks[index - 1].getStatusIcon() + " ");
                 System.out.println(tasks[index - 1].getDesc() + " ");
-            }else if (op.startsWith("todo")) {
+            }else if (input.startsWith("todo")) {
                 System.out.println("Got it. I've added this task:");
-                addTodo(op.substring(5));
+                addTodo(input.substring(5));
                 System.out.println("Now you have " + tasksCount + " tasks in the list");
-            }else if(op.startsWith("deadline")){
+            }else if(input.startsWith("deadline")){
                 System.out.println("Got it. I've added this task:");
-                int slashIndex = op.indexOf("/");
-                addDeadline(op.substring(9, slashIndex-1),op.substring(slashIndex+1));
+                int slashIndex = input.indexOf("/");
+                addDeadline(input.substring(9, slashIndex-1),input.substring(slashIndex+1));
                 System.out.println("Now you have " + tasksCount + " tasks in the list");
-            }else if(op.startsWith("event")){
+            }else if(input.startsWith("event")){
                 System.out.println("Got it. I've added this task:");
-                int slashIndex = op.indexOf("/");
-                addEvent(op.substring(6, slashIndex-1),op.substring(slashIndex+1));
+                int slashIndex = input.indexOf("/");
+                addEvent(input.substring(6, slashIndex-1),input.substring(slashIndex+1));
                 System.out.println("Now you have " + tasksCount + " tasks in the list");
             }else{
                 System.out.println("Here are the tasks in your list: ");
 //                printTasksList();
                 printTodoEventDeadlineList();
             }
-            op = sc.nextLine();
+            input = sc.nextLine();
         }
-        if (op.equals("bye")) {
+        if (input.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
         }
     }
