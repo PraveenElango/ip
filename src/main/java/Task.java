@@ -25,4 +25,12 @@ public class Task {
         return this.isDone;
     }
 
+    //overriden methods by subclasses
+    public String typeChar(){
+        return "Task";
+    }
+    public String getBy() {
+        return "by";
+    }
+
 }
