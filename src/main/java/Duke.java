@@ -107,6 +107,7 @@ public class Duke{
             }
             input = sc.nextLine();
             //useless comment
+            //useless comment2
         }
         if (input.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
