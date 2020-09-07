@@ -106,6 +106,7 @@ public class Duke{
                 printTodoEventDeadlineList();
             }
             input = sc.nextLine();
+            //useless comment
         }
         if (input.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
