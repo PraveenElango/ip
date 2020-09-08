@@ -1,3 +1,4 @@
+
 import java.io.InputStream;
 
 public class Task {
