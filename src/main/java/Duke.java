@@ -1,6 +1,8 @@
+
 import  java.util.Scanner;
 import java.io.InputStream;
 import java.lang.*;
+
 
 public class Duke{
     private static Task[] tasks = new Task[100];
@@ -56,21 +58,21 @@ public class Duke{
             }else{
                 System.out.println(tasks[i].getDesc() + " ");
             }
+
             i++;
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException{
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         while (!input.equals("bye")) {
-//            if (!input.equals("list") && !input.startsWith("done") && !input.startsWith("todo") && !input.startsWith("deadline") && !input.startsWith("event")) {
-//                System.out.println("added: " + input);
-//                addTask(input);
-//            } else
-            if (input.startsWith("done")) {
+            if (!input.equals("list") && !input.startsWith("done") && !input.startsWith("todo") && !input.startsWith("deadline") && !input.startsWith("event")) {
+                System.out.println("added: " + input);
+                addTask(input);
+            } else if (input.startsWith("done")) {
                 //if they input done without number
                 if (input.length() == 4) {
                     System.out.println("Please specify index of task!");
@@ -99,7 +101,6 @@ public class Duke{
                 System.out.println("Got it. I've added this task:");
                 addTodo(input.substring(5));
                 System.out.println("Now you have " + tasksCount + " tasks in the list");
-
             }else if(input.startsWith("deadline")){
                 System.out.println("Got it. I've added this task:");
                 int slashIndex = input.indexOf("/");
@@ -111,13 +112,16 @@ public class Duke{
                 addEvent(input.substring(6, slashIndex-1),input.substring(slashIndex+1));
                 System.out.println("Now you have " + tasksCount + " tasks in the list");
             }else if(input.equals("list")){
-                System.out.println("Here are the tasks in your list: ");
+            System.out.println("Here are the tasks in your list: ");
 //                printTasksList();
                 printTodoEventDeadlineList();
-            }else{
+            }else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             input = sc.nextLine();
+            //useless comment
+            //useless comment2
+
         }
         if (input.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
