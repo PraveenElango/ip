@@ -3,6 +3,12 @@ import  java.util.Scanner;
 import java.io.InputStream;
 import java.lang.*;
 import java.util.ArrayList;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
 
 public class Duke{
     private static ArrayList<Task> tasks = new ArrayList<Task>();
@@ -65,9 +71,12 @@ public class Duke{
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, FileNotFoundException {
             System.out.println("Hello! I'm Duke");
             System.out.println("What can I do for you?");
+            PrintWriter writer = new PrintWriter("data/duke.txt");
+            writer.print("");
+            writer.close();
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
             while (!input.equals("bye")) {
@@ -138,6 +147,28 @@ public class Duke{
                 //useless comment2
             }
             if(input.equals("bye")) {
+                try {
+                    FileWriter InitialWriter = new FileWriter("data/duke.txt");
+                    BufferedWriter myWriter = new BufferedWriter(InitialWriter);
+                    myWriter.write("List");
+                    myWriter.newLine();
+                    System.lineSeparator();
+                    for(int i=0; i<tasks.size(); i++) {
+                        myWriter.write(tasks.get(i).typeChar() + " ");
+                        myWriter.write(tasks.get(i).getStatusIcon() + " ");
+                        if (tasks.get(i) instanceof Deadline || tasks.get(i) instanceof Events) {
+                            myWriter.write(tasks.get(i).getDesc() + " ");
+                            myWriter.write("(" + tasks.get(i).getBy() + ") ");
+                        } else {
+                            myWriter.write(tasks.get(i).getDesc() + " ");
+                        }
+                        myWriter.newLine();
+                    }
+                    myWriter.close();
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
                 System.out.println("Bye. Hope to see you again soon!");
             }
         }
