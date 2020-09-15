@@ -2,6 +2,7 @@
 import  java.util.Scanner;
 import java.io.InputStream;
 import java.lang.*;
+
 import java.util.ArrayList;
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
@@ -9,6 +10,9 @@ import java.io.FileWriter;   // Import the FileWriter class
 import java.io.IOException;  // Import the IOException class to handle errors
 import java.io.PrintWriter;
 import java.io.BufferedWriter;
+
+
+
 
 public class Duke{
     private static ArrayList<Task> tasks = new ArrayList<Task>();
@@ -170,6 +174,8 @@ public class Duke{
                     e.printStackTrace();
                 }
                 System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("");
+
             }
         }
     }

@@ -1,4 +1,0 @@
-List
-[T] ✘ apple 
-[T] ✓ orange 
-[T] ✘ banana 
