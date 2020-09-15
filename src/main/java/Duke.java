@@ -2,81 +2,80 @@
 import  java.util.Scanner;
 import java.io.InputStream;
 import java.lang.*;
-
+import java.util.ArrayList;
 
 public class Duke{
-    private static Task[] tasks = new Task[100];
+    private static ArrayList<Task> tasks = new ArrayList<Task>();
     private static int tasksCount = 0;
     private static void addTask(String description){
-        tasks[tasksCount] = new Task(description);
-        System.out.print(tasks[tasksCount].typeChar()+ " ");
-        System.out.print(tasks[tasksCount].getStatusIcon() + " ");
-        System.out.println(tasks[tasksCount].getDesc() + " ");
+        tasks.add(new Task(description));
+//        tasks[tasksCount] = new Task(description);
+        System.out.print(tasks.get(tasksCount).typeChar()+ " ");
+        System.out.print(tasks.get(tasksCount).getStatusIcon() + " ");
+        System.out.println(tasks.get(tasksCount).getDesc() + " ");
         tasksCount += 1;
     }
     private static void addTodo(String description){
-        tasks[tasksCount] = new Todo(description);
-        System.out.print(tasks[tasksCount].typeChar()+ " ");
-        System.out.print(tasks[tasksCount].getStatusIcon() + " ");
-        System.out.println(tasks[tasksCount].getDesc() + " ");
+        tasks.add(new Todo(description));
+        System.out.print(tasks.get(tasksCount).typeChar()+ " ");
+        System.out.print(tasks.get(tasksCount).getStatusIcon() + " ");
+        System.out.println(tasks.get(tasksCount).getDesc() + " ");
         tasksCount += 1;
     }
     private static void addDeadline(String description, String by){
-        tasks[tasksCount] = new Deadline(description, by);
-        System.out.print(tasks[tasksCount].typeChar()+ " ");
-        System.out.print(tasks[tasksCount].getStatusIcon() + " ");
-        System.out.print(tasks[tasksCount].getDesc() + " ");
-        System.out.println("(" + tasks[tasksCount].getBy() + ") ");
+        tasks.add(new Deadline(description, by));
+        System.out.print(tasks.get(tasksCount).typeChar()+ " ");
+        System.out.print(tasks.get(tasksCount).getStatusIcon() + " ");
+        System.out.println(tasks.get(tasksCount).getDesc() + " ");
+        System.out.println("(" + tasks.get(tasksCount).getBy() + ") ");
         tasksCount += 1;
     }
     private static void addEvent(String description, String by){
-        tasks[tasksCount] = new Events(description, by);
-        System.out.print(tasks[tasksCount].typeChar()+ " ");
-        System.out.print(tasks[tasksCount].getStatusIcon() + " ");
-        System.out.print(tasks[tasksCount].getDesc() + " ");
-        System.out.println("(" + tasks[tasksCount].getBy() + ") ");
+        tasks.add(new Events(description, by));
+        System.out.print(tasks.get(tasksCount).typeChar()+ " ");
+        System.out.print(tasks.get(tasksCount).getStatusIcon() + " ");
+        System.out.println(tasks.get(tasksCount).getDesc() + " ");
+        System.out.println("(" + tasks.get(tasksCount).getBy() + ") ");
         tasksCount += 1;
     }
     private static void printTasksList() {
         int i = 0;
-        while (tasks[i] != null) {
+        while (tasks.get(i) != null) {
             System.out.print((i + 1) + ".");
-            System.out.print(tasks[i].getStatusIcon() + " ");
-            System.out.println(tasks[i].getDesc() + " ");
+            System.out.print(tasks.get(i).getStatusIcon() + " ");
+            System.out.println(tasks.get(i).getDesc() + " ");
             i++;
         }
     }
     private static void printTodoEventDeadlineList(){
         int i = 0;
-        while (tasks[i] != null) {
+        while (i<tasks.size()) {
             System.out.print((i + 1) + ".");
-            System.out.print(tasks[i].typeChar()+ " ");
-            System.out.print(tasks[i].getStatusIcon() + " ");
+            System.out.print(tasks.get(i).typeChar()+ " ");
+            System.out.print(tasks.get(i).getStatusIcon() + " ");
 
-            if(tasks[i] instanceof Deadline || tasks[i] instanceof Events){
-                System.out.print(tasks[i].getDesc() + " ");
-                System.out.println("("+ tasks[i].getBy() + ") ");
+            if(tasks.get(i) instanceof Deadline || tasks.get(i) instanceof Events){
+                System.out.print(tasks.get(i).getDesc() + " ");
+                System.out.println("("+ tasks.get(i).getBy() + ") ");
             }else{
-                System.out.println(tasks[i].getDesc() + " ");
+                System.out.println(tasks.get(i).getDesc() + " ");
             }
-
-
-            System.out.println(tasks[i].getDesc() + " ");
+//            System.out.println(tasks.get(i).getDesc() + " ");
             i++;
         }
     }
 
     public static void main(String[] args) throws DukeException {
-        public static void main (String[]args){
             System.out.println("Hello! I'm Duke");
             System.out.println("What can I do for you?");
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
             while (!input.equals("bye")) {
-                if (!input.equals("list") && !input.startsWith("done") && !input.startsWith("todo") && !input.startsWith("deadline") && !input.startsWith("event")) {
-                    System.out.println("added: " + input);
-                    addTask(input);
-                } else if (input.startsWith("done")) {
+//                if (!input.equals("list") && !input.startsWith("done") && !input.startsWith("todo") && !input.startsWith("deadline") && !input.startsWith("event")) {
+//                    System.out.println("added: " + input);
+//                    addTask(input);
+//                } else
+                    if (input.startsWith("done")) {
                     //if they input done without number
                     if (input.length() == 4) {
                         System.out.println("Please specify index of task!");
@@ -84,20 +83,20 @@ public class Duke{
                     }
                     String index_string = input.substring(5);
                     int index = Integer.parseInt(index_string);
-                    if (tasks[index - 1] == null || index < 0 || index > 99) {
+                    if (tasks.get(index-1) == null || index < 0 || index > 99) {
                         System.out.println("Out of bounds! Try again!");
                         input = sc.nextLine();
                         continue;
                     }
-                    if (tasks[index - 1].isDone()) {
+                    if (tasks.get(index-1).isDone()) {
                         System.out.println("Already done!");
                         input = sc.nextLine();
                         continue;
                     }
                     System.out.println("Nice! I've marked this task as done:");
-                    tasks[index - 1].markAsDone();
-                    System.out.print(tasks[index - 1].getStatusIcon() + " ");
-                    System.out.println(tasks[index - 1].getDesc() + " ");
+                    tasks.get(index-1).markAsDone();
+                    System.out.print(tasks.get(index-1).getStatusIcon() + " ");
+                    System.out.println(tasks.get(index-1).getDesc() + " ");
                 } else if (input.startsWith("todo")) {
                     System.out.println("Got it. I've added this task:");
                     addTodo(input.substring(5));
@@ -116,24 +115,34 @@ public class Duke{
                     System.out.println("Here are the tasks in your list: ");
 //                printTasksList();
                     printTodoEventDeadlineList();
-                } else {
+                } else if(input.startsWith("delete")){
+                    String index_string = input.substring(7);
+                    int i = Integer.parseInt(index_string);
+                    System.out.println("Noted. I've removed this task: ");
+                    System.out.print(tasks.get(i-1).typeChar()+ " ");
+                    System.out.print(tasks.get(i-1).getStatusIcon() + " ");
+                    if(tasks.get(i-1) instanceof Deadline || tasks.get(i-1) instanceof Events){
+                        System.out.print(tasks.get(i-1).getDesc() + " ");
+                        System.out.println("("+ tasks.get(i-1).getBy() + ") ");
+                    }else{
+                        System.out.println(tasks.get(i-1).getDesc() + " ");
+                    }
+                    tasks.remove(i-1);
+                    tasksCount-=1;
+                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                }else {
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-
-                }else{
-                    System.out.println("Here are the tasks in your list: ");
-//                printTasksList();
-                    printTodoEventDeadlineList();
                 }
                 input = sc.nextLine();
                 //useless comment
                 //useless comment2
             }
-            if (input.equals("bye")) {
+            if(input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
             }
         }
     }
-}
+
 
 
 
