@@ -3,6 +3,7 @@ import  java.util.Scanner;
 import java.io.InputStream;
 import java.lang.*;
 
+//Level7
 
 public class Duke{
     private static Task[] tasks = new Task[100];
@@ -130,6 +131,8 @@ public class Duke{
             }
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
+                System.out.println("");
+
             }
         }
     }
