@@ -1,3 +1,4 @@
+package duke;
 
 import java.io.InputStream;
 
@@ -28,7 +29,7 @@ public class Task {
 
     //overriden methods by subclasses
     public String typeChar(){
-        return "Task";
+        return "duke.Task";
     }
     public String getBy() {
         return "by";

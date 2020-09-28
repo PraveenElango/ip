@@ -1,3 +1,6 @@
+package duke;
+
+import duke.Task;
 
 public class Todo extends Task {
     protected boolean isDone;

@@ -1,9 +1,10 @@
+package duke;
 
-public class Events extends Todo {
+public class Deadline extends Todo {
 
     protected String by;
 
-    public Events(String description, String by) {
+    public Deadline(String description, String by) {
         super(description);
         this.by = by;
     }
@@ -19,6 +20,6 @@ public class Events extends Todo {
         return super.toString() + System.lineSeparator() + "do by: " + by;
     }
     public String typeChar(){
-        return "[E]";
+        return "[D]";
     }
 }
