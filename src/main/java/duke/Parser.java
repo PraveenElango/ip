@@ -1,6 +1,8 @@
 package duke;
 
 
+import java.util.ArrayList;
+
 public class Parser {
 
     private static TaskList taskList;
@@ -73,6 +75,17 @@ public class Parser {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    private static void handleFind(String args){
+        ArrayList<Task> tasks = taskList.getTasks();
+        TaskList matchingTaskList = new TaskList();
+        for(Task task:tasks){
+            if(task.getDesc().contains(args)){
+                matchingTaskList.addTask(task);
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        ui.printTodoEventDeadlineList(matchingTaskList);
+    }
 
     public static boolean handleCommand(String cmd) throws DukeException {
         String cmdArgs = "";
@@ -99,7 +112,10 @@ public class Parser {
             ui.printTodoEventDeadlineList(taskList);
         }else if(cmd.startsWith("delete")){
             handleDelete(cmdArgs);
-        }else if(cmd.equals("bye")){
+        }else if(cmd.startsWith("find")){
+            handleFind(cmdArgs);
+        }
+        else if(cmd.equals("bye")){
             handleBye();
             return false;
         }else{
