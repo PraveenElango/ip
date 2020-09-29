@@ -14,6 +14,7 @@ public class Duke {
     private TaskList taskList;
     private static Parser parser;
 
+    //declaration of Duke constructor
     public Duke(){
         ui = new Ui();
         taskList = new TaskList();
@@ -21,7 +22,7 @@ public class Duke {
         parser = new Parser(ui, taskList, storage);
     }
 
-
+    //execution of Duke program
     public static void main(String[] args) throws FileNotFoundException, DukeException {
         Duke duke = new Duke();
         System.out.println("Hello! I'm Duke");

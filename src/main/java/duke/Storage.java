@@ -5,9 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Storage {
-
+    //constructor for Storage class
     public Storage(){}
 
+    //save the list in the text file
     public static void saveList(TaskList taskList){
         try {
             FileWriter initialWriter = new FileWriter("data/duke.txt");

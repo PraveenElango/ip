@@ -9,7 +9,7 @@ public class Parser {
     private static Ui ui;
     private static Storage storage;
 
-
+    //declaration of Parser constructor
     public Parser(Ui ui, TaskList taskList, Storage storage){
         this.ui = ui;
         this.taskList = taskList;
@@ -87,6 +87,7 @@ public class Parser {
         ui.printTodoEventDeadlineList(matchingTaskList);
     }
 
+    //method to handle the command input of the user
     public static boolean handleCommand(String cmd) throws DukeException {
         String cmdArgs = "";
         String cmdAfterSlash = "";
