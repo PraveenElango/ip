@@ -22,6 +22,10 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public ArrayList<Task> getTasks(){
+        return tasks;
+    }
+
     public void addTask(Task task){
         tasks.add(task);
     }
