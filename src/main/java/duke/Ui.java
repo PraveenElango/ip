@@ -41,7 +41,7 @@ public class Ui {
             index++;
         }
     }
-    //print the UI for delete functionality
+    //print the UI for the delete functionality
     public void printDelete(TaskList taskList, int index){
         System.out.println("Noted. I've removed this task: ");
         System.out.print(taskList.getTask(index-1).typeChar()+ " ");
