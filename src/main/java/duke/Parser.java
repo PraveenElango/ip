@@ -10,7 +10,7 @@ public class Parser {
     private static Storage storage;
 
     //declaration of Parser constructor
-    public Parser(Ui ui, TaskList taskList, Storage storage){
+    public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
         this.storage = storage;
@@ -33,49 +33,49 @@ public class Parser {
     }
 
     //handler functions
-    private static void handleDone(String args){
+    private static void handleDone(String args) {
         int index;
         //Check correct formatting
-        try{
+        try {
             index = Integer.parseInt(args);
         }catch(NumberFormatException e){
             System.out.println("Check formatting of usage of done!");
             return;
         }
         //Marking task as done
-        try{
+        try {
             ui.printDone(taskList, index);
-        }catch(IndexOutOfBoundsException e){
+        } catch(IndexOutOfBoundsException e){
             System.out.println("Task does not exist, please check again!");
         }
     }
 
-    private static void handleTodo(String args){
+    private static void handleTodo(String args) {
         addTodo(args);
         ui.TaskAddedNotifier(taskList);
     }
 
-    private static void handleDeadline(String desc, String by){
+    private static void handleDeadline(String desc, String by) {
         addDeadline(desc,by);
         ui.TaskAddedNotifier(taskList);
     }
 
-    private static void handleEvent(String desc, String by){
+    private static void handleEvent(String desc, String by) {
         addEvent(desc,by);
         ui.TaskAddedNotifier(taskList);
     }
 
-    private static void handleDelete(String args){
+    private static void handleDelete(String args) {
         int index = Integer.parseInt(args);
         ui.printDelete(taskList, index);
     }
 
-    private static void handleBye(){
+    private static void handleBye() {
         storage.saveList(taskList);
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    private static void handleFind(String args){
+    private static void handleFind(String args) {
         ArrayList<Task> tasks = taskList.getTasks();
         TaskList matchingTaskList = new TaskList();
         for(Task task:tasks){
@@ -101,25 +101,25 @@ public class Parser {
             cmdAfterSlash = cmd.substring(slashIndex+1).trim();
         }
         //cases
-        if(cmd.startsWith("done")){
+        if (cmd.startsWith("done")) {
             handleDone(cmdArgs);
-        }else if(cmd.startsWith("todo")){
+        } else if(cmd.startsWith("todo")) {
             handleTodo(cmdArgs);
-        }else if(cmd.startsWith("deadline")){
+        } else if(cmd.startsWith("deadline")) {
             handleDeadline(cmd.substring(spaceIndex+1,slashIndex), cmdAfterSlash);
-        }else if(cmd.startsWith("event")) {
+        } else if(cmd.startsWith("event")) {
             handleEvent(cmd.substring(spaceIndex+1,slashIndex),cmdAfterSlash);
-        }else if(cmd.equals("list")){
+        } else if(cmd.equals("list")) {
             ui.printTodoEventDeadlineList(taskList);
-        }else if(cmd.startsWith("delete")){
+        } else if(cmd.startsWith("delete")) {
             handleDelete(cmdArgs);
-        }else if(cmd.startsWith("find")){
+        } else if(cmd.startsWith("find")) {
             handleFind(cmdArgs);
         }
-        else if(cmd.equals("bye")){
+        else if(cmd.equals("bye")) {
             handleBye();
             return false;
-        }else{
+        } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         return true;

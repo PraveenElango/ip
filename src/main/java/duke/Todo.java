@@ -26,7 +26,7 @@ public class Todo extends Task {
         }
         return super.toString() + System.lineSeparator() + "is done? " + status;
     }
-    public String typeChar(){
+    public String typeChar() {
         return "[T]";
     }
 }
