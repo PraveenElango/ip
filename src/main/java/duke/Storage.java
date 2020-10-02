@@ -11,7 +11,7 @@ public class Storage {
     //save the list in the text file
     public static void saveList(TaskList taskList){
         try {
-            FileWriter initialWriter = new FileWriter("data/duke.txt");
+            FileWriter initialWriter = new FileWriter("duke.txt");
             BufferedWriter myWriter = new BufferedWriter(initialWriter);
             myWriter.write("List");
             myWriter.newLine();

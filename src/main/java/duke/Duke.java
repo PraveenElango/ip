@@ -1,9 +1,11 @@
 package duke;
 
+import java.io.IOException;
 import  java.util.Scanner;
 import java.lang.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.File;
 
 
 
@@ -23,14 +25,17 @@ public class Duke {
     }
 
     //execution of Duke program
-    public static void main(String[] args) throws FileNotFoundException, DukeException {
+    public static void main(String[] args) throws IOException, DukeException {
         Duke duke = new Duke();
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
-        PrintWriter writer = new PrintWriter("data/duke.txt");
-        writer.print("");
-        writer.close();
+        File file= new File("duke.txt");
+        if(!file.createNewFile()){
+            PrintWriter writer = new PrintWriter(file);
+            writer.print("");
+            writer.close();
+        }
 
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
