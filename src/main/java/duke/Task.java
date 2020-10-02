@@ -15,20 +15,20 @@ public class Task {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
-    public String getDesc(){
+    public String getDesc() {
         return this.description;
     }
 
-    public boolean isDone(){
+    public boolean isDone() {
         return this.isDone;
     }
 
     //overriden methods by subclasses
-    public String typeChar(){
+    public String typeChar() {
         return "duke.Task";
     }
     public String getBy() {

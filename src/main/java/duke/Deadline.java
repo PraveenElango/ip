@@ -19,7 +19,7 @@ public class Deadline extends Todo {
     public String toString() {
         return super.toString() + System.lineSeparator() + "do by: " + by;
     }
-    public String typeChar(){
+    public String typeChar() {
         return "[D]";
     }
 }

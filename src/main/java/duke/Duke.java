@@ -15,7 +15,7 @@ public class Duke {
     private static Parser parser;
 
     //declaration of Duke constructor
-    public Duke(){
+    public Duke() {
         ui = new Ui();
         taskList = new TaskList();
         storage = new Storage();
@@ -36,13 +36,13 @@ public class Duke {
         String cmd = sc.nextLine();
 
         boolean dukeExecuting = true;
-        do{
+        do {
             dukeExecuting = duke.parser.handleCommand(cmd);
-            if(cmd.equals("bye")){
+            if(cmd.equals("bye")) {
                 return;
             }
             cmd = sc.nextLine();
-        }while(dukeExecuting);
+        } while(dukeExecuting);
 
     }
 }
