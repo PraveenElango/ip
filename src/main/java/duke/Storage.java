@@ -4,11 +4,20 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Storage of items in list in a text file.
+ */
 public class Storage {
-    //constructor for Storage class
+
     public Storage(){}
 
-    //save the list in the text file
+    /**
+     * Method to save the tasks in the list by reading and writing it in
+     * the text file.
+     * @param taskList TaskList instance containing the ArrayList of tasks.
+     * @throws IOException If there are problems with writing input/output to
+     * the text file.
+     */
     public static void saveList(TaskList taskList){
         try {
             FileWriter initialWriter = new FileWriter("duke.txt");

@@ -3,36 +3,64 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the component of the program that handles and processes
+ * user inputs and interacts with the UI accordingly. The adding,
+ * handling, and deleting of all tasks is done here.
+ */
 public class Parser {
 
     private static TaskList taskList;
     private static Ui ui;
     private static Storage storage;
 
-    //declaration of Parser constructor
+    /**
+     * Initialises Parser.
+     */
     public Parser(Ui ui, TaskList taskList, Storage storage) {
         this.ui = ui;
         this.taskList = taskList;
         this.storage = storage;
 
     }
-    //adder functions
+
+    /**
+     * Adds a Todo task to the TaskList and prints it in the UI
+     * if it has been successfully added.
+     * @param description Description of the Todo task.
+     */
     private static void addTodo(String description) {
         taskList.addTask(new Todo(description));
         ui.printTodo(taskList);
     }
 
+    /**
+     * Adds a Deadline task to the TaskList and prints it in the UI
+     * if it has been successfully added.
+     * @param description Description of the Deadline task.
+     */
     private static void addDeadline(String description, String by) {
         taskList.addTask(new Deadline(description, by));
         ui.printDeadlineOrEvent(taskList);
     }
 
+    /**
+     * Adds an Event task to the TaskList and prints it in the UI
+     * if it has been successfully added.
+     * @param description Description of the Event task.
+     */
     private static void addEvent(String description, String by) {
         taskList.addTask(new Events(description, by));
         ui.printDeadlineOrEvent(taskList);
     }
 
-    //handler functions
+    /**
+     * Marks a task as done
+     * @param args Used to obtain index of task in TaskList to mark as done.
+     * @throws NumberFormatException if formatting of input is incorrect, i.e.
+     * not aligned with what is pointed out in the UG
+     * @throws IndexOutOfBoundsException if the task is not in the TaskList.
+     */
     private static void handleDone(String args) {
         int index;
         //Check correct formatting
@@ -84,10 +112,15 @@ public class Parser {
             }
         }
         System.out.println("Here are the matching tasks in your list:");
-        ui.printTodoEventDeadlineList(matchingTaskList);
+        Ui.printTodoEventDeadlineList(matchingTaskList);
     }
 
-    //method to handle the command input of the user
+    /**
+     * Handles the commands passed in by the user accordingly.
+     * @param cmd Command passed in by user.
+     * @return false If user inputs bye as command.
+     * @return true If method has completed execution.
+     */
     public static boolean handleCommand(String cmd) throws DukeException {
         String cmdArgs = "";
         String cmdAfterSlash = "";
@@ -120,7 +153,7 @@ public class Parser {
             handleBye();
             return false;
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         return true;
     }
