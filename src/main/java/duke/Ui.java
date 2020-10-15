@@ -46,6 +46,9 @@ public class Ui {
      */
     public static void printTodoEventDeadlineList(TaskList taskList) {
         int index = 0;
+        if (taskList.size() == 0) {
+            System.out.println("No tasks in list!");
+        }
         while (index < taskList.size()) {
             System.out.print((index + 1) + ".");
             System.out.print(taskList.getTask(index).typeChar() + " ");

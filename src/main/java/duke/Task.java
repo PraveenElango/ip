@@ -1,7 +1,5 @@
 package duke;
 
-import java.io.InputStream;
-
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -27,7 +25,7 @@ public class Task {
         return this.isDone;
     }
 
-    //overriden methods by subclasses
+    //overridden methods by subclasses
     public String typeChar() {
         return "duke.Task";
     }

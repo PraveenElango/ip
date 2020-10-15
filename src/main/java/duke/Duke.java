@@ -3,18 +3,9 @@ package duke;
 import java.io.IOException;
 import  java.util.Scanner;
 import java.lang.*;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.File;
 
-
-
-import java.io.IOException;
-import  java.util.Scanner;
-import java.lang.*;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.File;
 
 /**
  * The Duke program is a Personal Assistant Chatbot that helps a person
@@ -22,32 +13,28 @@ import java.io.File;
  */
 public class Duke {
 
-    private Ui ui;
-    private Storage storage;
-    private TaskList taskList;
     private static Parser parser;
 
     /**
      * Initialises Duke.
      */
     public Duke() {
-        ui = new Ui();
-        taskList = new TaskList();
-        storage = new Storage();
-        parser = new Parser(ui, taskList, storage);
+        Ui ui = new Ui();
+        TaskList taskList = new TaskList();
+        Storage storage = new Storage();
+        parser = new Parser(ui, taskList);
     }
 
     /**
      * This is the main method which makes use of the classes declared
      * in the Duke constructor to initialise the program.
      * @param args Unused.
-     * @return Nothing.
      * @throws IOException when there are input/output file operation issues while
      * creating and writing the program list to the text file.
      * @throws DukeException when errors specific to Duke are raised.
      */
     public static void main(String[] args) throws IOException, DukeException {
-        Duke duke = new Duke();
+        new Duke();
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
@@ -61,9 +48,9 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
 
-        boolean dukeExecuting = true;
+        boolean dukeExecuting;
         do {
-            dukeExecuting = duke.parser.handleCommand(cmd);
+            dukeExecuting = Parser.handleCommand(cmd);
             if(cmd.equals("bye")) {
                 return;
             }

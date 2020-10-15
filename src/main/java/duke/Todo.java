@@ -1,7 +1,5 @@
 package duke;
 
-import duke.Task;
-
 /**
  * Represents a todo task to be added in the todo list.
  */
@@ -32,7 +30,7 @@ public class Todo extends Task {
     }
 
     public String toString() {
-        String status = null;
+        String status;
         if (isDone){
             status = "Yes";
         } else {

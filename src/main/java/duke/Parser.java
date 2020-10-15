@@ -12,15 +12,13 @@ public class Parser {
 
     private static TaskList taskList;
     private static Ui ui;
-    private static Storage storage;
 
     /**
      * Initialises Parser.
      */
-    public Parser(Ui ui, TaskList taskList, Storage storage) {
-        this.ui = ui;
-        this.taskList = taskList;
-        this.storage = storage;
+    public Parser(Ui ui, TaskList taskList) {
+        Parser.ui = ui;
+        Parser.taskList = taskList;
 
     }
 
@@ -99,7 +97,7 @@ public class Parser {
     }
 
     private static void handleBye() {
-        storage.saveList(taskList);
+        Storage.saveList(taskList);
         System.out.println("Bye. Hope to see you again soon!");
     }
 
@@ -121,7 +119,7 @@ public class Parser {
      * @return false If user inputs bye as command.
      * @return true If method has completed execution.
      */
-    public static boolean handleCommand(String cmd) throws DukeException {
+    public static boolean handleCommand(String cmd) {
         String cmdArgs = "";
         String cmdAfterSlash = "";
         int spaceIndex = cmd.indexOf(" ");
@@ -143,7 +141,7 @@ public class Parser {
         } else if(cmd.startsWith("event")) {
             handleEvent(cmd.substring(spaceIndex+1,slashIndex),cmdAfterSlash);
         } else if(cmd.equals("list")) {
-            ui.printTodoEventDeadlineList(taskList);
+            Ui.printTodoEventDeadlineList(taskList);
         } else if(cmd.startsWith("delete")) {
             handleDelete(cmdArgs);
         } else if(cmd.startsWith("find")) {
