@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * Accounts for the User Interface where the printing is handled based on the
  * user commands.
@@ -59,6 +61,26 @@ public class Ui {
                 System.out.println("(" + taskList.getTask(index).getBy() + ") ");
             } else {
                 System.out.println(taskList.getTask(index).getDesc() + " ");
+            }
+            index++;
+        }
+    }
+
+    public static void findList(ArrayList<Task> findList) {
+        int index = 0;
+        if (findList.size() == 0) {
+            System.out.println("No tasks in list!");
+        }
+        while (index < findList.size()) {
+            System.out.print((index + 1) + ".");
+            System.out.print(findList.get(index).typeChar() + " ");
+            System.out.print(findList.get(index).getStatusIcon() + " ");
+
+            if (findList.get(index) instanceof Deadline || findList.get(index) instanceof Events) {
+                System.out.print(findList.get(index).getDesc() + " ");
+                System.out.println("(" + findList.get(index).getBy() + ") ");
+            } else {
+                System.out.println(findList.get(index).getDesc() + " ");
             }
             index++;
         }

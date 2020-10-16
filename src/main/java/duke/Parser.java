@@ -103,14 +103,15 @@ public class Parser {
 
     private static void handleFind(String args) {
         ArrayList<Task> tasks = taskList.getTasks();
-        TaskList matchingTaskList = new TaskList();
+        ArrayList<Task> matchingTaskList = new ArrayList<>();
         for(Task task:tasks){
             if(task.getDesc().contains(args)){
-                matchingTaskList.addTask(task);
+                matchingTaskList.add(task);
             }
         }
         System.out.println("Here are the matching tasks in your list:");
-        Ui.printTodoEventDeadlineList(matchingTaskList);
+        Ui.findList(matchingTaskList);
+
     }
 
     /**
