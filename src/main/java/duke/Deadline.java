@@ -18,6 +18,13 @@ public class Deadline extends Todo {
     }
 
     /**
+     * Set the task as done or otherwise.
+     */
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    /**
      * Setting of deadline.
      */
     public void setBy(String by) {
@@ -31,6 +38,7 @@ public class Deadline extends Todo {
     public String getBy() {
         return by;
     }
+
 
     public String toString() {
         return super.toString() + System.lineSeparator() + "do by: " + by;

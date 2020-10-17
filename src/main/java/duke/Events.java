@@ -24,6 +24,13 @@ public class Events extends Todo {
     }
 
     /**
+     * Set the task as done or otherwise.
+     */
+    public void setDone(boolean done) {
+        isDone = done;
+    }
+
+    /**
      * Obtaining event details.
      * @return Date and time of event.
      */

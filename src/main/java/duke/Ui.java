@@ -93,13 +93,13 @@ public class Ui {
      */
     public void printDelete(TaskList taskList, int index) {
         System.out.println("Noted. I've removed this task: ");
-        System.out.print(taskList.getTask(index-1).typeChar()+ " ");
-        System.out.print(taskList.getTask(index-1).getStatusIcon() + " ");
-        if (taskList.getTask(index-1) instanceof Deadline || taskList.getTask(index-1) instanceof Events){
-            System.out.print(taskList.getTask(index-1).getDesc() + " ");
-            System.out.println("("+ taskList.getTask(index-1).getBy() + ") ");
+        System.out.print(taskList.getTask(index - 1).typeChar()+ " ");
+        System.out.print(taskList.getTask(index - 1).getStatusIcon() + " ");
+        if (taskList.getTask(index-1) instanceof Deadline || taskList.getTask(index - 1) instanceof Events){
+            System.out.print(taskList.getTask(index - 1).getDesc() + " ");
+            System.out.println("("+ taskList.getTask(index - 1).getBy() + ") ");
         } else {
-            System.out.println(taskList.getTask(index-1).getDesc() + " ");
+            System.out.println(taskList.getTask(index - 1).getDesc() + " ");
         }
         taskList.removeTask(index-1);
         System.out.println("Now you have " + taskList.size() + " tasks in the list.");
@@ -113,8 +113,8 @@ public class Ui {
     public void printDone(TaskList taskList, int index) {
         System.out.println("Nice! I've marked this task as done:");
         taskList.getTask(index-1).markAsDone();
-        System.out.print(taskList.getTask(index-1).getStatusIcon() + " ");
-        System.out.println(taskList.getTask(index-1).getDesc() + " ");
+        System.out.print(taskList.getTask(index - 1).getStatusIcon() + " ");
+        System.out.println(taskList.getTask(index - 1).getDesc() + " ");
     }
 
 }

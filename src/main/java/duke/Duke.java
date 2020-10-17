@@ -13,16 +13,18 @@ import java.io.File;
  */
 public class Duke {
 
+    private static Ui ui;
+    public static Storage storage;
+    public static TaskList taskList;
     private static Parser parser;
 
     /**
      * Initialises Duke.
      */
-    public Duke() {
-        Ui ui = new Ui();
-        TaskList taskList = new TaskList();
-        Storage storage = new Storage();
-        parser = new Parser(ui, taskList);
+    public Duke(String filePath) {
+        ui = new Ui();
+        taskList = new TaskList();
+        storage = new Storage(filePath, taskList);
     }
 
     /**
@@ -34,24 +36,21 @@ public class Duke {
      * @throws DukeException when errors specific to Duke are raised.
      */
     public static void main(String[] args) throws IOException, DukeException {
-        new Duke();
+        new Duke("duke.txt");
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
         File file= new File("duke.txt");
-        if(!file.createNewFile()){
-            PrintWriter writer = new PrintWriter(file);
-            writer.print("");
-            writer.close();
+        if (!file.createNewFile()) {
+            parser = new Parser(ui, storage.loadList("duke.txt", taskList));
         }
-
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
 
         boolean dukeExecuting;
         do {
-            dukeExecuting = Parser.handleCommand(cmd);
-            if(cmd.equals("bye")) {
+            dukeExecuting = parser.handleCommand(cmd);
+            if (cmd.equals("bye")) {
                 return;
             }
             cmd = sc.nextLine();

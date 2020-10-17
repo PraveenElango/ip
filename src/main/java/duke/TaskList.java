@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    private static ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
     /**
      * Initialises TaskList with an ArrayList to keep track

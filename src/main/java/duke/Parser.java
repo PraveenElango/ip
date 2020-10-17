@@ -127,10 +127,10 @@ public class Parser {
         int slashIndex = cmd.indexOf("/");
         //indexing
         if(spaceIndex != -1){
-            cmdArgs = cmd.substring(spaceIndex+1).trim();
+            cmdArgs = cmd.substring(spaceIndex + 1).trim();
         }
         if(slashIndex != -1){
-            cmdAfterSlash = cmd.substring(slashIndex+1).trim();
+            cmdAfterSlash = cmd.substring(slashIndex + 1).trim();
         }
         //cases
         if (cmd.startsWith("done")) {
@@ -138,9 +138,9 @@ public class Parser {
         } else if(cmd.startsWith("todo")) {
             handleTodo(cmdArgs);
         } else if(cmd.startsWith("deadline")) {
-            handleDeadline(cmd.substring(spaceIndex+1,slashIndex), cmdAfterSlash);
+            handleDeadline(cmd.substring(spaceIndex + 1,slashIndex), cmdAfterSlash);
         } else if(cmd.startsWith("event")) {
-            handleEvent(cmd.substring(spaceIndex+1,slashIndex),cmdAfterSlash);
+            handleEvent(cmd.substring(spaceIndex + 1,slashIndex),cmdAfterSlash);
         } else if(cmd.equals("list")) {
             Ui.printTodoEventDeadlineList(taskList);
         } else if(cmd.startsWith("delete")) {
