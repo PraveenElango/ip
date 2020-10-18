@@ -1,10 +1,8 @@
 package duke;
 
-import java.io.IOException;
-import  java.util.Scanner;
-import java.lang.*;
-import java.io.PrintWriter;
 import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
 
 /**
@@ -43,6 +41,8 @@ public class Duke {
         File file= new File("duke.txt");
         if (!file.createNewFile()) {
             parser = new Parser(ui, storage.loadList("duke.txt", taskList));
+        } else {
+            parser = new Parser(ui, taskList);
         }
         Scanner sc = new Scanner(System.in);
         String cmd = sc.nextLine();
